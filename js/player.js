@@ -21,7 +21,7 @@ moveRight(){
     this.collision()
     }
     this.snakeBody.forEach(function(snakeBodyPart) { // Körperelement bewegt sich mit nach rechts;
-    (snakeBodyPart[0] += 50);
+        (snakeBodyPart[0] += 50);
     })
 
     //console.log("right");
@@ -49,6 +49,7 @@ moveUp(){
     }
     this.snakeBody.forEach(function(snakeBodyPart) { 
         (snakeBodyPart[1] -= 50);
+        
     })
     //console.log("up");
     //console.log(this.x);
@@ -60,7 +61,7 @@ moveDown(){
     this.y += 50;
     this.collision();
     }
-    this.snakeBody.forEach(function(snakeBodyPart) { 
+    this.snakeBody.forEach(function(snakeBodyPart) {
         (snakeBodyPart[1] += 50);
     })
     //console.log("down");
@@ -81,23 +82,21 @@ collision() {
         game.collisionCount++ // Zählen der collisions; Später eventuell noch oben rechts anzeigen lassen.
         console.log(game.collisionCount);
 
-        this.snakeBody.push([this.x, this.y]); // snakeBody wächst in leeren Array (jeweils x und y Koordinate);
+        if (this.snakeBody.length !== 0) {
+
+        this.snakeBody.push([this.snakeBody[this.snakeBody.length-1][0] + 30, this.y]); // snakeBody wächst in leeren Array (jeweils x und y Koordinate);
         console.log(this.snakeBody);
         console.log(this.snakeBody[0]);
         console.log(this.snakeBody[1]);
         console.log(this.snakeBody[2]);
         console.log(this.snakeBody[3]);
         console.log(this.snakeBody.length);
-
-        for (let i = this.snakeBody.length - 1; i > 0; i--) {  // stores previous part of snake to the current part
-            this.snakeBody[i] = this.snakeBody[i - 1];
         }
 
-        if (this.snakeBody.length) {
-            this.snakeBody[0] = [this.x, this.y];
+        else {
+            this.snakeBody.push([this.y, this.y]);
         }
     }
-    
 
 }
 }
