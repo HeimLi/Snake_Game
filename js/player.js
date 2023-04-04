@@ -83,11 +83,11 @@ collision() {
         console.log(game.collisionCount);
 
         if (this.snakeBody.length !== 0) {
-        this.snakeBody.push([this.x - (this.blockSize * this.snakeBody.length) + 32, this.y]); // snakeBody wächst in leeren Array (jeweils x und y Koordinate);
+        this.snakeBody.push([this.x - (this.blockSize * this.snakeBody.length -1) + 32, this.y]); // snakeBody wächst in leeren Array (jeweils x und y Koordinate);
         }
 
         else {
-        this.snakeBody.push([this.x - this.blockSize + 32, this.y]);
+        this.snakeBody.push([this.x - (this.blockSize * 2) + 20, this.y]);
         }
     }
         console.log(this.snakeBody);
