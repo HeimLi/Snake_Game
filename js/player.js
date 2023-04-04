@@ -8,6 +8,7 @@ constructor(playerTwo) {
     this.snakeBody = [];
     this.speedX = 0;
     this.speedY = 0;
+    this.blockSize = 50;
 }
 
 draw(){
@@ -24,9 +25,9 @@ moveRight(){
         (snakeBodyPart[0] += 50);
     })
 
-    //console.log("right");
-    //console.log(this.x);
-    //console.log(this.y);
+    console.log("right");
+    console.log(this.x);
+    console.log(this.y);
 }
 
 moveLeft(){
@@ -37,9 +38,9 @@ moveLeft(){
     this.snakeBody.forEach(function(snakeBodyPart) { 
         (snakeBodyPart[0] -= 50);
     })
-    //console.log("left");  
-    //console.log(this.x);
-    //console.log(this.y); 
+    console.log("left");  
+    console.log(this.x);
+    console.log(this.y); 
 }
 
 moveUp(){
@@ -51,9 +52,9 @@ moveUp(){
         (snakeBodyPart[1] -= 50);
         
     })
-    //console.log("up");
-    //console.log(this.x);
-    //console.log(this.y);
+    console.log("up");
+    console.log(this.x);
+    console.log(this.y);
 }
 
 moveDown(){
@@ -64,9 +65,9 @@ moveDown(){
     this.snakeBody.forEach(function(snakeBodyPart) {
         (snakeBodyPart[1] += 50);
     })
-    //console.log("down");
-    //console.log(this.x);
-    //console.log(this.y);
+    console.log("down");
+    console.log(this.x);
+    console.log(this.y);
 }
 
 collision() {
@@ -77,26 +78,24 @@ collision() {
         this.playerTwo.y = randomY;
 
         console.log("catch");
-       
 
         game.collisionCount++ // Zählen der collisions; Später eventuell noch oben rechts anzeigen lassen.
         console.log(game.collisionCount);
 
         if (this.snakeBody.length !== 0) {
+        this.snakeBody.push([this.x - (this.blockSize * this.snakeBody.length) + 32, this.y]); // snakeBody wächst in leeren Array (jeweils x und y Koordinate);
+        }
 
-        this.snakeBody.push([this.snakeBody[this.snakeBody.length-1][0] + 30, this.y]); // snakeBody wächst in leeren Array (jeweils x und y Koordinate);
+        else {
+        this.snakeBody.push([this.x - this.blockSize + 32, this.y]);
+        }
+    }
         console.log(this.snakeBody);
+        console.log(this.snakeBody.length);
         console.log(this.snakeBody[0]);
         console.log(this.snakeBody[1]);
         console.log(this.snakeBody[2]);
         console.log(this.snakeBody[3]);
-        console.log(this.snakeBody.length);
-        }
-
-        else {
-            this.snakeBody.push([this.y, this.y]);
-        }
-    }
 
 }
 }
