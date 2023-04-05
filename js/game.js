@@ -3,7 +3,7 @@ class Game {
         this.playerFour = new PlayerFour();
         this.playerThree = new PlayerThree();
         this.playerTwo = new PlayerTwo();
-        this.player = new Player(this.playerTwo, this.playerThree);
+        this.player = new Player(this.playerTwo, this.playerThree, this.playerFour);
         this.background = new Background();
         this.collisionCount = 0; 
     }

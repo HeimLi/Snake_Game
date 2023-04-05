@@ -1,10 +1,10 @@
 class PlayerFour{
     constructor() {
-        this.width = 60;
-        this.height = 60;
+        this.width = 15;
+        this.height = 15;
         this.x = 210;
         this.y = 210;
-        this.velocity = 2;
+        this.velocity = 8;
     }
     
     draw(){
@@ -21,8 +21,8 @@ class PlayerFour{
             this.y -= this.velocity;
         }
 
-        console.log(this.x);
-        console.log(this.y);
+        // console.log(this.x);
+        // console.log(this.y);
         
         fill("plum");
         rect(this.x, this.y, this.width, this.height);

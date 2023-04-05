@@ -13,7 +13,7 @@ draw(){
     fill("red");
     rect(this.x, this.y, this.width, this.height); 
     this.crash();
-    // this.crash2();
+    this.crash2();
 }
 
 moveRight(){

@@ -21,8 +21,8 @@ class PlayerThree{
             this.y -= this.velocity;
         }
 
-        console.log(this.x);
-        console.log(this.y);
+        // console.log(this.x);
+        // console.log(this.y);
         
         fill("plum");
         rect(this.x, this.y, this.width, this.height);
