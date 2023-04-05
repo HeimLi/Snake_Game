@@ -1,30 +1,26 @@
 class Player{
-constructor(playerTwo) {
+constructor(playerTwo, playerThree, playerFour) {
     this.playerTwo = playerTwo;
+    this.playerThree = playerThree;
+    this.playerFour = playerFour;
     this.width = 30;
     this.height = 30;
     this.x = 10;
     this.y = 10;
-    this.snakeBody = [];
-    this.speedX = 0;
-    this.speedY = 0;
-    this.blockSize = 50;
 }
 
 draw(){
     fill("red");
-    rect(this.x, this.y, this.width, this.height); // Snake-Kopf;
+    rect(this.x, this.y, this.width, this.height); 
+    this.crash();
+    // this.crash2();
 }
 
 moveRight(){
     if (this.x < 960) {
     this.x += 50;
-    this.collision()
+    this.collision();
     }
-    this.snakeBody.forEach(function(snakeBodyPart) { // Körperelement bewegt sich mit nach rechts;
-        (snakeBodyPart[0] += 50);
-    })
-
     console.log("right");
     console.log(this.x);
     console.log(this.y);
@@ -33,11 +29,8 @@ moveRight(){
 moveLeft(){
     if (this.x > 50) {
     this.x -= 50;
-    this.collision() 
+    this.collision();
     }
-    this.snakeBody.forEach(function(snakeBodyPart) { 
-        (snakeBodyPart[0] -= 50);
-    })
     console.log("left");  
     console.log(this.x);
     console.log(this.y); 
@@ -46,12 +39,8 @@ moveLeft(){
 moveUp(){
     if (this.y > 50) {
     this.y -= 50;
-    this.collision()
+    this.collision();
     }
-    this.snakeBody.forEach(function(snakeBodyPart) { 
-        (snakeBodyPart[1] -= 50);
-        
-    })
     console.log("up");
     console.log(this.x);
     console.log(this.y);
@@ -62,9 +51,6 @@ moveDown(){
     this.y += 50;
     this.collision();
     }
-    this.snakeBody.forEach(function(snakeBodyPart) {
-        (snakeBodyPart[1] += 50);
-    })
     console.log("down");
     console.log(this.x);
     console.log(this.y);
@@ -72,30 +58,39 @@ moveDown(){
 
 collision() {
     if (this.x === this.playerTwo.x && this.y === this.playerTwo.y) { // PlayerTwo abholen via constructor;
-        let randomX = (Math.floor(Math.random() * 19,2) * 50 + 50) + 10; // Random-Zahl generieren;
-        let randomY = (Math.floor(Math.random() * 19,2) * 50 + 50) + 10;
-        this.playerTwo.x = randomX;
-        this.playerTwo.y = randomY;
-
         console.log("catch");
+    let randomX = (Math.floor(Math.random() * 19,2) * 50 + 50) + 10; // Random-Zahl generieren;
+    let randomY = (Math.floor(Math.random() * 19,2) * 50 + 50) + 10;
+    this.playerTwo.x = randomX;
+    this.playerTwo.y = randomY;
 
-        game.collisionCount++ // Zählen der collisions; Später eventuell noch oben rechts anzeigen lassen.
-        console.log(game.collisionCount);
-
-        if (this.snakeBody.length !== 0) {
-        this.snakeBody.push([this.x - (this.blockSize * this.snakeBody.length -1) + 32, this.y]); // snakeBody wächst in leeren Array (jeweils x und y Koordinate);
-        }
-
-        else {
-        this.snakeBody.push([this.x - (this.blockSize * 2) + 20, this.y]);
-        }
+    this.width = this.width + 20;
+    this.height = this.height + 20;
+    
+    if (this.width > 200 && this.height > 200) {
+        console.log("Enough! It is big enough.");
+        noLoop()
+        document.querySelector(".theEnd").innerText = "Big enough!"
     }
-        console.log(this.snakeBody);
-        console.log(this.snakeBody.length);
-        console.log(this.snakeBody[0]);
-        console.log(this.snakeBody[1]);
-        console.log(this.snakeBody[2]);
-        console.log(this.snakeBody[3]);
 
-}
+    game.collisionCount++ // Zählen der collisions; Später eventuell noch oben rechts anzeigen lassen.
+    document.querySelector(".score").innerText = game.collisionCount;
+    console.log(game.collisionCount);
+}}
+
+crash() {
+    if (dist(this.x, this.y, this.playerThree.x, this.playerThree.y) < this.width) {
+        console.log("Oh no, crash");
+
+        this.width = this.width - 2;
+        this.height = this.height - 2;
+}}
+
+crash2() {
+    if (dist(this.x, this.y, this.playerFour.x, this.playerFour.y) < this.width) {
+        console.log("Oh no, crash");
+
+        this.width = this.width - 2;
+        this.height = this.height - 2;
+}}
 }
