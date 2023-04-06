@@ -8,6 +8,8 @@ constructor(playerTwo, playerThree, playerFour, playerFive) {
     this.height = 30;
     this.x = 10;
     this.y = 10;
+    this.sizePlayerX = [this.x, (this.x + this.width)];
+    this.sizePlayerY = [this.y, (this.y + this.height)];
 }
 
 draw(){
@@ -59,12 +61,19 @@ moveDown(){
 }
 
 collision() {
-    if (this.x === this.playerTwo.x && this.y === this.playerTwo.y) { // PlayerTwo abholen via constructor;
-        console.log("catch");
+    if ((this.playerTwo.x >= this.x && this.playerTwo.x <= this.x + this.width ||
+        this.playerTwo.x + this.playerTwo.width >= this.x && this.playerTwo.x + this.playerTwo.width <= this.x + this.width)
+        &&
+        (this.playerTwo.y >= this.y && this.playerTwo.y <= this.y + this.height ||
+        this.playerTwo.y + this.playerTwo.height >= this.y && this.playerTwo.y + this.playerTwo.height <= this.y + this.height)) { // PlayerTwo abholen via constructor;
+    console.log("catch");
     let randomX = (Math.floor(Math.random() * 19,2) * 50 + 50) + 10; // Random-Zahl generieren;
     let randomY = (Math.floor(Math.random() * 19,2) * 50 + 50) + 10;
     this.playerTwo.x = randomX;
     this.playerTwo.y = randomY;
+
+    this.sizePlayer = this.x + (this.width / 2)
+    console.log(this.sizePlayer);
 
     this.width = this.width + 20;
     this.height = this.height + 20;
@@ -75,7 +84,7 @@ collision() {
         document.querySelector(".theEnd").innerText = "Big enough!"
     }
 
-    game.collisionCount++ // Zählen der collisions; Später eventuell noch oben rechts anzeigen lassen.
+    game.collisionCount++ // Zählen der collisions;
     document.querySelector(".score").innerText = game.collisionCount;
     console.log(game.collisionCount);
 }}
