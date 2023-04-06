@@ -1,8 +1,9 @@
 class Player{
-constructor(playerTwo, playerThree, playerFour) {
+constructor(playerTwo, playerThree, playerFour, playerFive) {
     this.playerTwo = playerTwo;
     this.playerThree = playerThree;
     this.playerFour = playerFour;
+    this.playerFive = playerFive;
     this.width = 30;
     this.height = 30;
     this.x = 10;
@@ -14,6 +15,7 @@ draw(){
     rect(this.x, this.y, this.width, this.height); 
     this.crash();
     this.crash2();
+    this.crash3();
 }
 
 moveRight(){
@@ -93,4 +95,13 @@ crash2() {
         this.width = this.width - 2;
         this.height = this.height - 2;
 }}
+
+crash3() {
+    if (dist(this.x, this.y, this.playerFive.x, this.playerFive.y) < this.width) {
+        console.log("Oh no, crash");
+
+        this.width = this.width - 2;
+        this.height = this.height - 2;
+}}
+
 }
